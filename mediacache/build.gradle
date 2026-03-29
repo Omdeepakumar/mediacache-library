@@ -7,6 +7,7 @@ extra {
 }
 
 android {
+    namespace 'com.media.cache'
     compileSdkVersion 34
     defaultConfig {
         minSdkVersion 21
@@ -38,3 +39,19 @@ dependencies {
 // This block is for publishing to JitPack
 // It will automatically pick up the GROUP_ID and VERSION_NAME from extra
 // No need to explicitly define publishing block for JitPack
+
+apply plugin: 'maven-publish'
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = extra.GROUP_ID
+                artifactId = 'mediacache'
+                version = extra.VERSION_NAME
+
+                from components.release
+            }
+        }
+    }
+}
