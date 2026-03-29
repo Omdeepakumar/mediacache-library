@@ -1,27 +1,28 @@
-apply plugin: 'com.android.library'
-
-extra {
-    // JitPack Group ID
-    GROUP_ID = 'com.github.Omdeepakumar'
-    VERSION_NAME = '1.0.0'
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
     namespace 'com.media.cache'
-    compileSdkVersion 34
+    compileSdk 34
+
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 34
+        minSdk 21
+        targetSdk 34
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.4"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
@@ -35,22 +36,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 
-// JitPack configuration
-// This block is for publishing to JitPack
-// It will automatically pick up the GROUP_ID and VERSION_NAME from extra
-// No need to explicitly define publishing block for JitPack
-
-apply plugin: 'maven-publish'
-
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                groupId = extra.GROUP_ID
-                artifactId = 'mediacache'
-                version = extra.VERSION_NAME
-
                 from components.release
+                groupId = 'com.github.Omdeepakumar'
+                artifactId = 'mediacache'
+                version = '1.0.4'
             }
         }
     }
