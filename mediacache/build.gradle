@@ -1,17 +1,16 @@
-plugins {
-    id 'com.android.library'
-    id 'maven-publish'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     namespace 'com.media.cache'
+
     compileSdk 34
 
     defaultConfig {
         minSdk 21
         targetSdk 34
         versionCode 1
-        versionName "1.0.5"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,11 +27,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    publishing {
-        singleVariant('release') {
-            withSourcesJar()
-        }
-    }
+
 }
 
 dependencies {
@@ -49,7 +44,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.Omdeepakumar'
                 artifactId = 'mediacache'
-                version = '1.0.5'
+                version = '1.0.0'
             }
         }
     }
